@@ -26,8 +26,11 @@
         <h2>{{ customer.name }}</h2>
         <p>Phone: {{ customer.phone }}</p>
 
-        <br>
-        <a href="{% url 'old_customers' %}">⬅ Back</a>
+        <br><br>
+    <a href="{% url 'delete_customer' customer.id %}"
+    style="color:red; text-decoration:none;">
+    🗑 Delete Customer
+    </a>
     </div>
 
 </body>
