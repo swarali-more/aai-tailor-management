@@ -41,3 +41,14 @@ def delete_customer(request, id):
     customer = Customer.objects.get(id=id)
     customer.delete()
     return redirect('old_customers')
+
+def edit_customer(request, id):
+    customer = Customer.objects.get(id=id)
+
+    if request.method == "POST":
+        customer.name = request.POST.get('name')
+        customer.phone = request.POST.get('phone')
+        customer.save()
+        return redirect('customer_detail', id=customer.id)
+
+    return render(request, 'edit_customer.html', {'customer': customer})
