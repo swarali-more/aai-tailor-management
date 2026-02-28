@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Customer
+from .models import Customer, Blouse
 
 def home(request):
     return render(request, 'home.html')
@@ -53,6 +53,7 @@ def customer_detail(request, id):
             )
 
     return render(request, 'customer_detail.html', {'customer': customer})
+
 def delete_customer(request, id):
     customer = Customer.objects.get(id=id)
     customer.delete()
