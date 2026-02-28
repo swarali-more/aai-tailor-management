@@ -4,21 +4,25 @@ from .models import Customer
 def home(request):
     return render(request, 'home.html')
 
-
 def add_customer(request):
     if request.method == "POST":
         name = request.POST.get('name')
         phone = request.POST.get('phone')
+        photo = request.FILES.get('photo')
+        received_date = request.POST.get('received_date')
+        delivery_date = request.POST.get('delivery_date')
 
-        Customer.objects.create(
+        customer = Customer.objects.create(
             name=name,
-            phone=phone
+            phone=phone,
+            photo=photo,
+            received_date=received_date,
+            delivery_date=delivery_date
         )
 
-        return redirect('old_customers')
+        return redirect('customer_detail', id=customer.id)
 
     return render(request, 'add_customer.html')
-
 
 def old_customers(request):
     search_query = request.GET.get('search')
