@@ -39,6 +39,19 @@ def old_customers(request):
 
 def customer_detail(request, id):
     customer = Customer.objects.get(id=id)
+
+    if request.method == "POST":
+
+        if 'note' in request.POST:
+            customer.note = request.POST.get('note')
+            customer.save()
+
+        if request.FILES.get('blouse_image'):
+            Blouse.objects.create(
+                customer=customer,
+                image=request.FILES.get('blouse_image')
+            )
+
     return render(request, 'customer_detail.html', {'customer': customer})
 
 def delete_customer(request, id):
