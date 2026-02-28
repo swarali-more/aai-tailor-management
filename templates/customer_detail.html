@@ -80,16 +80,38 @@
         object-fit: cover;
     }
 
-    .date-section {
-        margin-top: 30px;
+     .date-wrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    }
+
+    .date-form {
         display: flex;
-        gap: 40px;
+        align-items: center;
+        gap: 60px;
     }
 
     .date-box {
-        background: #ffe6f0;
-        padding: 10px 20px;
-        border-radius: 20px;
+        background: white;
+        padding: 25px 40px;
+        border-radius: 25px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        min-width: 280px;
+    }
+
+    .date-box label {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .date-box input {
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        font-size: 16px;
     }
 
     .blouse-box {
@@ -178,15 +200,30 @@
         </div>
     </div>
 
-    <div class="date-section">
-        <div class="date-box">
-            Received Date: {{ customer.received_date }}
-        </div>
-        <div class="date-box">
-            Delivery Date: {{ customer.delivery_date }}
-        </div>
-    </div>
+    <div class="date-wrapper">
+        <form method="POST" class="date-form">
+            {% csrf_token %}
 
+            <div class="date-box">
+                <label>Received Date</label>
+                <input type="date"
+                    name="received_date"
+                    value="{{ customer.received_date|date:'Y-m-d' }}">
+            </div>
+
+            <div class="date-box">
+                <label>Delivery Date</label>
+                <input type="date"
+                    name="delivery_date"
+                    value="{{ customer.delivery_date|date:'Y-m-d' }}">
+            </div>
+
+            <button type="submit" class="save-btn">
+                Update Dates
+            </button>
+
+        </form>
+    </div>
 </div>
 
 <script>
