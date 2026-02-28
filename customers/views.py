@@ -42,15 +42,26 @@ def customer_detail(request, id):
 
     if request.method == "POST":
 
-        if 'note' in request.POST:
+        # Save Note
+        if request.POST.get('note') is not None:
             customer.note = request.POST.get('note')
-            customer.save()
 
+        # Save Dates
+        if request.POST.get('received_date'):
+            customer.received_date = request.POST.get('received_date')
+
+        if request.POST.get('delivery_date'):
+            customer.delivery_date = request.POST.get('delivery_date')
+
+        # Save Blouse Image
         if request.FILES.get('blouse_image'):
             Blouse.objects.create(
                 customer=customer,
                 image=request.FILES.get('blouse_image')
             )
+
+        # Final Save
+        customer.save()
 
     return render(request, 'customer_detail.html', {'customer': customer})
 
