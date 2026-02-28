@@ -53,7 +53,6 @@ def customer_detail(request, id):
             )
 
     return render(request, 'customer_detail.html', {'customer': customer})
-
 def delete_customer(request, id):
     customer = Customer.objects.get(id=id)
     customer.delete()
