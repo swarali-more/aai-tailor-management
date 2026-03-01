@@ -1,86 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Customer</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            background: linear-gradient(to right, #ffe6f0, #ffd6eb);
-            text-align: center;
-            padding: 60px;
-        }
+<h2 style="color:#d81b60;">Add New Customer 👗</h2>
 
-        h2 {
-            color: #cc0066;
-            margin-bottom: 40px;
-        }
+<div style="
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    width:100%;
+    max-width:500px;
+    margin:20px auto;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+">
 
-        .form-box {
-            background: white;
-            padding: 40px;
-            width: 100%;
-            margin: auto;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
+<form method="POST">
+    {% csrf_token %}
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 20px;
-            border: 1px solid #ccc;
-        }
+    <input type="text" name="name" placeholder="Customer Name" required
+    style="
+        width:100%;
+        padding:12px;
+        margin-bottom:15px;
+        border-radius:25px;
+        border:1px solid #ccc;
+    ">
 
-        button {
-            padding: 10px 25px;
-            border-radius: 20px;
-            border: none;
-            background: #ff3399;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+    <input type="text" name="number" placeholder="Phone Number" required
+    style="
+        width:100%;
+        padding:12px;
+        margin-bottom:20px;
+        border-radius:25px;
+        border:1px solid #ccc;
+    ">
 
-        button:hover {
-            background: #e60073;
-            transform: scale(1.05);
-        }
+    <button type="submit" style="
+        background:#ff2d8d;
+        color:white;
+        border:none;
+        padding:10px 25px;
+        border-radius:25px;
+        cursor:pointer;
+    ">
+        Save
+    </button>
 
-        a {
-            display: block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #cc0066;
-        }
-    </style>
-</head>
-<body>
+</form>
 
-    <h2>Add New Customer 👗</h2>
+<br>
+<a href="{% url 'old_customers' %}" style="color:#d81b60;">
+    View Old Customers
+</a>
 
-    <div class="form-box">
-            <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+</div>
 
-            <input type="text" name="name" placeholder="Customer Name" required>
-            <input type="text" name="phone" placeholder="Phone Number" required>
-
-            <input type="file" name="photo">
-            <input type="date" name="received_date">
-            <input type="date" name="delivery_date">
-
-            <br><br>
-            <button type="submit">Save</button>
-        </form>
-
-        <a href="{% url 'old_customers' %}">View Old Customers</a>
-    </div>
-
-</body>
-</html>
 {% endblock %}
