@@ -46,6 +46,10 @@ def customer_detail(request, id):
         if request.POST.get('note') is not None:
             customer.note = request.POST.get('note')
 
+        if request.FILES.get('photo'):
+            customer.photo = request.FILES.get('photo')
+            customer.save()
+
         # Save Dates
         if request.POST.get('received_date'):
             customer.received_date = request.POST.get('received_date')

@@ -152,13 +152,42 @@
 
     <div class="middle-section">
 
-        <div class="photo-box">
-            {% if customer.photo %}
-                <img src="{{ customer.photo.url }}">
-            {% else %}
-                <p>No Photo</p>
-            {% endif %}
-        </div>
+        <div style="position:relative; width:150px; height:150px; margin-bottom:20px;">
+
+        {% if customer.photo %}
+            <img src="{{ customer.photo.url }}" 
+                style="width:150px; height:150px; border-radius:20px; object-fit:cover;">
+        {% else %}
+            <div style="
+                width:150px;
+                height:150px;
+                border-radius:20px;
+                background:#f8f8f8;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:40px;
+                color:#ff2d8d;
+            ">
+                +
+            </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" style="position:absolute; top:0; left:0;">
+            {% csrf_token %}
+            <input type="file" name="photo"
+                accept="image/*"
+                capture="environment"
+                onchange="this.form.submit()"
+                style="
+                    width:150px;
+                    height:150px;
+                    opacity:0;
+                    cursor:pointer;
+                ">
+        </form>
+
+    </div>
 
         <div class="note-box">
             <h3>Note ✏</h3>
