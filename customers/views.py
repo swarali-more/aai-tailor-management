@@ -64,6 +64,10 @@ def customer_detail(request, id):
                 image=request.FILES.get('blouse_image')
             )
 
+        if request.POST.get('status'):
+            customer.status = request.POST.get('status')
+            customer.save()
+
         # Final Save
         customer.save()
 
