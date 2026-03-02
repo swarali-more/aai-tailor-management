@@ -22,6 +22,11 @@ A Django-based Tailor Management Web Application.
 
 Home → Add Customer → Old Customers → Customer Detail
 
+## 📌 New Feature Added
+
+- Order Status System (Pending, In Stitching, Ready, Delivered)
+- Mobile Responsive Layout
+
 ---
 
 Built with ❤️ by Swarali
